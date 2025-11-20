@@ -1,15 +1,17 @@
 import { Component } from "react";
 import CommentsList from "./CommentsList.jsx";
-// import AddComment from "./AddComment.jsx";
+import AddComment from "./AddComment.jsx";
 // CommentArea dovrà fare la fetch delle recensioni per il libro selezionato, e salvare i commenti nel proprio stato. Conterrà inoltre due sotto-componenti: CommentsList and AddComment.
 
 class CommentArea extends Component {
     state = {
         comments: [
             {
+            "author": "",
             "comment": "",
             "rate": 1,
             "elementId": "",
+            "_id": ""
             }
         ]
     };
@@ -29,6 +31,7 @@ class CommentArea extends Component {
         }
     })
     .then((arrayComments) => {
+        console.log(arrayComments);
         this.setState({ 
             comments: arrayComments 
         });
@@ -43,7 +46,7 @@ componentDidMount() {
         return (
             <div>
                 <CommentsList comments={this.state.comments} />
-                {/* <AddComment asin={this.props.asin} refreshComments={this.getComments} /> */}
+                <AddComment asin={this.props.asin} newComments={this.getComments} />
             </div>
         );
     }
