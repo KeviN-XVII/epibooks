@@ -27,9 +27,9 @@ class BookList extends Component {
         <Form.Label>Cerca il tuo libro</Form.Label>
         <Form.Control type="text" placeholder="Cerca il tuo libro" value={this.state.search} onChange={(e) => this.setState({search: e.target.value})}/>
       </Form.Group>
-      <Button variant="primary" type="submit">
+      {/* <Button variant="primary" type="submit">
         Cerca
-      </Button>
+      </Button> */}
     </Form>
             <Row>
                 {filteredBooks.map((book) => (

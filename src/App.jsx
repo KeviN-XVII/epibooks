@@ -12,6 +12,7 @@ function App() {
   return (
     <>
       <Epibooksnav />
+      <div className="bg-light">
       <EpiAlert />
       {/* <SingleBook book={{
          "asin": "0345546792",
@@ -22,6 +23,7 @@ function App() {
       }} /> */}
       <BookList books={horrorBooks} />
       {/* <AllTheBooks /> */}
+      </div>
       <Footer />
     </>
   )
