@@ -3,53 +3,49 @@ import SingleBook from "./SingleBook.jsx";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Container, Row } from "react-bootstrap";
-import { Component } from "react";
+import { useState } from "react";
 
-class BookList extends Component {
-  state = {
-    search: "",
-  };
-  render() {
-    // adesso do come risultato il form di ricerca e sotto la lista dei libri
-    const filteredBooks = this.props.books.filter((book) =>
-      book.title.toLowerCase().includes(this.state.search.toLowerCase())
-    );
+const BookList = (props) => {
+  const [search, setSearch] = useState("");
+  // adesso do come risultato il form di ricerca e sotto la lista dei libri
+  const filteredBooks = props.books.filter((book) =>
+    book.title.toLowerCase().includes(search.toLowerCase())
+  );
 
-    return (
-      <>
-        <Container>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              console.log("Cercando il libro:", this.state.search);
-            }}
-          >
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Cerca il tuo libro</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Cerca il tuo libro"
-                value={this.state.search}
-                onChange={(e) => this.setState({ search: e.target.value })}
-              />
-            </Form.Group>
-            {/* <Button variant="primary" type="submit">
+  return (
+    <>
+      <Container>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log("Cercando il libro:", search);
+          }}
+        >
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Cerca il tuo libro</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Cerca il tuo libro"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </Form.Group>
+          {/* <Button variant="primary" type="submit">
         Cerca
       </Button> */}
-          </Form>
-          <Row>
-            {filteredBooks.map((book) => (
-              <SingleBook
-                book={book}
-                key={book.asin}
-                onSelectBook={this.props.onSelectBook}
-                selectedAsin={this.props.selectedAsin}
-              />
-            ))}
-          </Row>
-        </Container>
-      </>
-    );
-  }
-}
+        </Form>
+        <Row>
+          {filteredBooks.map((book) => (
+            <SingleBook
+              book={book}
+              key={book.asin}
+              onSelectBook={props.onSelectBook}
+              selectedAsin={props.selectedAsin}
+            />
+          ))}
+        </Row>
+      </Container>
+    </>
+  );
+};
 export default BookList;
