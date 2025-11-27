@@ -30,7 +30,6 @@ class App extends Component {
             selectedAsin={this.state.selectedAsin}
           />
           <CommentArea asinFromApp={this.state.selectedAsin} />
-          {/* <AllTheBooks /> */}
         </div>
         <Footer />
       </>
